@@ -34,9 +34,9 @@ const Login = ({ setIsLoggedIn }) => {
         console.log("BACKEND ERROR:", data);
       }
       if (data.success) {
-        localStorage.setItem("token", data.authtoken);
-        localStorage.setItem("userName", data.user.name);
-        localStorage.setItem("userId", data.user.id || data.user._id);
+        sessionStorage.setItem("token", data.authtoken);
+        sessionStorage.setItem("userName", data.user.name);
+        sessionStorage.setItem("userId", data.user.id || data.user._id);
 
         setIsLoggedIn(true);
         showAlert("success", "Login successful! Redirecting...");

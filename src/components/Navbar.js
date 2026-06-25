@@ -1,23 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import "./Navbar.css";
 import darkLogo from "../assets/darklogo.png";
+
 const Navbar = ({
   darkMode,
   setDarkMode,
   isLoggedIn,
   setIsLoggedIn,
+  notificationCount,
 }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+
   const token = isLoggedIn;
-  const userName = localStorage.getItem("userName");
+  const userName = sessionStorage.getItem("userName");
   const handleLogout = () => {
-  localStorage.removeItem("token");
-  localStorage.removeItem("userName");
-  setIsLoggedIn(false);
-  window.location.href = "/login";
-};
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("userName");
+    setIsLoggedIn(false);
+    window.location.href = "/login";
+  };
+
   return (
     <nav className="navbar">
       <div className="logo-container">
@@ -33,15 +37,24 @@ const Navbar = ({
         <Link to="/" className="nav-link">
           Home
         </Link>
+
         <Link to="/about" className="nav-link">
           About
         </Link>
+
         <Link to="/projects" className="nav-link">
           Projects
         </Link>
-        <Link to="/myprojects" className="nav-link">
+
+        <Link to="/myprojects" className="nav-link nav-link-with-badge">
           My Projects
+          {token && notificationCount > 0 && (
+            <span className="nav-notification-badge">
+              {notificationCount}
+            </span>
+          )}
         </Link>
+
         <Link to="/myapplications" className="nav-link">
           Applications
         </Link>
@@ -81,6 +94,7 @@ const Navbar = ({
           </div>
         )}
       </div>
+
       {/* Mobile Hamburger */}
       {!menuOpen && (
         <button className="hamburger" onClick={() => setMenuOpen(true)}>
@@ -101,6 +115,7 @@ const Navbar = ({
             <i className="fa-solid fa-xmark"></i>
           </button>
         </div>
+
         <div className="drawer-profile">
           <i className="fa-solid fa-circle-user"></i>
 
@@ -138,11 +153,19 @@ const Navbar = ({
 
         <Link
           to="/myprojects"
-          className="mobile-link"
+          className="mobile-link mobile-link-with-badge"
           onClick={() => setMenuOpen(false)}
         >
-          <i className="fa-solid fa-briefcase"></i>
-          My Projects
+          <div className="mobile-link-left">
+            <i className="fa-solid fa-briefcase"></i>
+            My Projects
+          </div>
+
+          {token && notificationCount > 0 && (
+            <span className="mobile-nav-notification-badge">
+              {notificationCount}
+            </span>
+          )}
         </Link>
 
         <Link

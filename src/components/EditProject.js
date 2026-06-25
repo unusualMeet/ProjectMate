@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import "./CreateProject.css";
 import "./EditProject.css";
 
-const EditProject = ({ showAlert }) => {
+const EditProject = () => {
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState("");
   const { id } = useParams();
@@ -18,24 +17,31 @@ const EditProject = ({ showAlert }) => {
 
   useEffect(() => {
     fetchProject();
-  }, []);
+    // eslint-disable-next-line
+  }, [id]);
 
   const fetchProject = async () => {
     try {
       const response = await fetch(`http://localhost:5000/api/projects/${id}`);
-
       const data = await response.json();
 
-      setProject({
-        title: data.title || "",
-        description: data.description || "",
-        requiredSkills: data.requiredSkills
-          ? data.requiredSkills.join(", ")
-          : "",
-        teamSize: data.teamSize || "",
-      });
+      if (response.ok) {
+        setProject({
+          title: data.title || "",
+          description: data.description || "",
+          requiredSkills: data.requiredSkills
+            ? data.requiredSkills.join(", ")
+            : "",
+          teamSize: data.teamSize || "",
+        });
+      } else {
+        setMessage(data.error || "Failed to load project");
+        setMessageType("error");
+      }
     } catch (error) {
       console.error(error);
+      setMessage("Something went wrong while loading project");
+      setMessageType("error");
     }
   };
 
@@ -56,54 +62,57 @@ const EditProject = ({ showAlert }) => {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
-            "auth-token": localStorage.getItem("token"),
+            "auth-token": sessionStorage.getItem("token"),
           },
           body: JSON.stringify({
             title: project.title,
             description: project.description,
             requiredSkills: project.requiredSkills
               .split(",")
-              .map((skill) => skill.trim()),
-            teamSize: project.teamSize,
+              .map((skill) => skill.trim())
+              .filter((skill) => skill !== ""),
+            teamSize: Number(project.teamSize),
           }),
-        },
+        }
       );
 
       const data = await response.json();
 
       if (response.ok) {
-        setMessage("Project updated successfully");
+        setMessage("Project updated successfully!");
         setMessageType("success");
+
         setTimeout(() => {
           navigate("/myprojects");
         }, 1500);
       } else {
-        alert(data.error || "Failed to update project");
+        setMessage(data.error || "Failed to update project");
+        setMessageType("error");
       }
     } catch (error) {
       console.error(error);
-      alert("Something went wrong");
+      setMessage("Something went wrong");
+      setMessageType("error");
     }
   };
 
   return (
-    <div className="create-project-page">
-      {message && (
-        <div className={`custom-alert ${messageType}`}>{message}</div>
-      )}
-      <div className="create-project-container">
+    <div className="edit-project-page">
+      <div className="edit-project-container">
+        {message && (
+          <div className={`custom-alert ${messageType}`}>{message}</div>
+        )}
+
         <h1>Edit Project</h1>
 
-        <p>
-          Update your project details and keep your team requirements up to
-          date.
+        <p className="edit-subtitle">
+          Update your project details and keep your team requirements up to date.
         </p>
 
         <form onSubmit={handleUpdate}>
-          <div className="form-grid">
+          <div className="edit-form-grid">
             <div className="form-group">
               <label>Project Title</label>
-
               <input
                 type="text"
                 name="title"
@@ -115,12 +124,12 @@ const EditProject = ({ showAlert }) => {
 
             <div className="form-group">
               <label>Team Size</label>
-
               <input
                 type="number"
                 name="teamSize"
                 value={project.teamSize}
                 onChange={onChange}
+                min="2"
                 required
               />
             </div>
@@ -128,7 +137,6 @@ const EditProject = ({ showAlert }) => {
 
           <div className="form-group">
             <label>Required Skills</label>
-
             <input
               type="text"
               name="requiredSkills"
@@ -141,17 +149,16 @@ const EditProject = ({ showAlert }) => {
 
           <div className="form-group">
             <label>Description</label>
-
             <textarea
               name="description"
               value={project.description}
               onChange={onChange}
-              rows="4"
+              rows="6"
               required
             />
           </div>
 
-          <button type="submit" className="create-btn">
+          <button type="submit" className="edit-btn">
             Update Project
           </button>
         </form>

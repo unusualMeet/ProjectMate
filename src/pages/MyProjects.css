@@ -28,10 +28,10 @@
   padding: 22px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
-
   display: flex;
   flex-direction: column;
   min-height: 520px;
+  position: relative;
 }
 
 .my-project-card:hover {
@@ -49,6 +49,78 @@
   font-weight: 700;
   color: #0a7c5a;
   margin: 12px 0 8px;
+}
+
+/* =========================
+   NEW APPLICATION HIGHLIGHT
+========================= */
+.project-has-new-applications {
+  border-left: 6px solid #ef4444;
+  box-shadow:
+    0 0 0 1px rgba(239, 68, 68, 0.15),
+    0 0 24px rgba(239, 68, 68, 0.12);
+  animation: projectCardPulse 1.8s infinite;
+}
+
+@keyframes projectCardPulse {
+  0% {
+    box-shadow:
+      0 0 0 0 rgba(239, 68, 68, 0.22),
+      0 0 24px rgba(239, 68, 68, 0.12);
+  }
+  70% {
+    box-shadow:
+      0 0 0 12px rgba(239, 68, 68, 0),
+      0 0 24px rgba(239, 68, 68, 0.14);
+  }
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(239, 68, 68, 0),
+      0 0 24px rgba(239, 68, 68, 0.12);
+  }
+}
+
+.project-card-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.new-applications-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  animation: newApplicationsBadgePulse 1.5s infinite;
+}
+
+@keyframes newApplicationsBadgePulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.045);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.new-request-text {
+  color: #dc2626;
+  font-weight: 700;
+  font-size: 0.96rem;
+  margin: 4px 0 12px;
 }
 
 /* =========================
@@ -107,7 +179,6 @@
   background: #d1fae5;
   color: #065f46;
   font-weight: 600;
-  margin-bottom: 20px;
   width: fit-content;
 }
 
@@ -152,6 +223,7 @@
   margin-top: auto;
   margin-bottom: 20px;
 }
+
 .edit-btn,
 .applicants-btn {
   flex: 1;
@@ -181,6 +253,17 @@
 
 .applicants-btn:hover {
   background-color: #08684c;
+  color: white;
+}
+
+.applicants-btn-highlight {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  box-shadow: 0 10px 22px rgba(239, 68, 68, 0.28);
+}
+
+.applicants-btn-highlight:hover {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
   color: white;
 }
 
@@ -261,7 +344,7 @@
 
   .my-project-card {
     width: 100%;
-    min-height: auto; /* allow natural height on mobile */
+    min-height: auto;
   }
 
   .project-title {
@@ -271,6 +354,15 @@
   .project-actions {
     flex-direction: column;
     margin-bottom: 0;
+  }
+
+  .project-card-top-row {
+    align-items: flex-start;
+  }
+
+  .new-applications-pill {
+    font-size: 12px;
+    padding: 7px 12px;
   }
 }
 
@@ -318,6 +410,13 @@
   box-shadow: none;
 }
 
+.dark-theme .project-has-new-applications {
+  border-left: 6px solid #ef4444;
+  box-shadow:
+    0 0 0 1px rgba(239, 68, 68, 0.18),
+    0 0 28px rgba(239, 68, 68, 0.16);
+}
+
 .dark-theme .project-title {
   color: #10b981;
 }
@@ -344,6 +443,20 @@
 .dark-theme .status-badge {
   background: #064e3b;
   color: #10b981;
+}
+
+.dark-theme .new-applications-pill {
+  background: rgba(127, 29, 29, 0.32);
+  color: #fecaca;
+  border: 1px solid rgba(248, 113, 113, 0.35);
+}
+
+.dark-theme .new-request-text {
+  color: #f87171;
+}
+.dark-theme .applicants-btn-highlight {
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+  color: white;
 }
 
 .dark-theme .empty-projects h2 {

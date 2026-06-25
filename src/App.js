@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter, Router, Routes, Route } from "react-router-dom";
+import React, { useState, useEffect, useCallback } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -15,17 +15,68 @@ import EditProject from "./components/EditProject";
 import Profile from "./pages/Profile";
 import ProjectDetails from "./pages/ProjectDetails";
 import ProjectApplicants from "./pages/ProjectApplicants";
+
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
-    return localStorage.getItem("theme") === "dark";
+    return sessionStorage.getItem("theme") === "dark";
   });
 
-  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    !!sessionStorage.getItem("token")
+  );
+
+  // Navbar notification count
+  const [notificationCount, setNotificationCount] = useState(0);
+
   useEffect(() => {
     document.body.className = darkMode ? "dark-theme" : "light-theme";
-
-    localStorage.setItem("theme", darkMode ? "dark" : "light");
+    sessionStorage.setItem("theme", darkMode ? "dark" : "light");
   }, [darkMode]);
+
+  // Fetch notification count
+  const fetchNotificationCount = useCallback(async () => {
+    try {
+      const token = sessionStorage.getItem("token");
+
+      if (!token) {
+        setNotificationCount(0);
+        return;
+      }
+
+      const response = await fetch(
+        "http://localhost:5000/api/projects/myprojects/notifications/count",
+        {
+          headers: {
+            "auth-token": token,
+          },
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setNotificationCount(data.totalNewApplications || 0);
+      }
+    } catch (error) {
+      console.error("Failed to fetch notification count:", error);
+    }
+  }, []);
+
+  // Initial fetch + polling for live navbar updates
+  useEffect(() => {
+    if (!isLoggedIn) {
+      setNotificationCount(0);
+      return;
+    }
+
+    fetchNotificationCount();
+
+    const interval = setInterval(() => {
+      fetchNotificationCount();
+    }, 5000); // every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [isLoggedIn, fetchNotificationCount]);
 
   return (
     <BrowserRouter>
@@ -34,6 +85,7 @@ function App() {
         setDarkMode={setDarkMode}
         isLoggedIn={isLoggedIn}
         setIsLoggedIn={setIsLoggedIn}
+        notificationCount={notificationCount}
       />
 
       <Routes>
@@ -56,6 +108,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/project/:id"
           element={
@@ -64,6 +117,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/about"
           element={
@@ -72,6 +126,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/edit-project/:id"
           element={
@@ -80,6 +135,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/create-project"
           element={
@@ -88,6 +144,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/projects"
           element={
@@ -96,14 +153,19 @@ function App() {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/myprojects"
           element={
             <ProtectedRoute>
-              <MyProjects darkMode={darkMode} />
+              <MyProjects
+                darkMode={darkMode}
+                setNotificationCount={setNotificationCount}
+              />
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/myapplications"
           element={
@@ -112,6 +174,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/profile"
           element={
@@ -120,6 +183,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/project/:id/applicants"
           element={

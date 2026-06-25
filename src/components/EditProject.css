@@ -1,45 +1,168 @@
+/* =========================
+   PAGE WRAPPER
+========================= */
+
+.edit-project-page {
+  min-height: calc(100vh - 80px);
+  padding: 30px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.edit-project-container {
+  width: 100%;
+  max-width: 1050px;
+  margin: auto;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 0px 36px 30px 36px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border-left: 6px solid #0a7c5a;
+  box-sizing: border-box;
+}
+
+/* =========================
+   HEADINGS
+========================= */
+
+.edit-project-container h1 {
+  margin: 0;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 800;
+  color: #0a7c5a;
+}
+
+.edit-subtitle {
+  text-align: center;
+  color: #64748b;
+  font-size: 1.05rem;
+  margin: 10px 0 15px;
+  line-height: 1.6;
+}
+
+/* =========================
+   ALERT
+========================= */
+
 .custom-alert {
-  padding: 12px 18px;
-  border-radius: 10px;
-  margin-bottom: 20px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  margin-bottom: 22px;
   font-weight: 600;
+  font-size: 0.98rem;
 }
 
 .custom-alert.success {
   background: #d1fae5;
   color: #065f46;
+  border: 1px solid #86efac;
 }
 
 .custom-alert.error {
   background: #fee2e2;
   color: #991b1b;
+  border: 1px solid #fca5a5;
 }
+
 /* =========================
-   DARK MODE - ALERTS
+   FORM LAYOUT
 ========================= */
 
-.dark-theme .custom-alert.success {
-  background: #064e3b;
-  color: #10b981;
+.edit-form-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 22px;
+  margin-bottom: 10px;
 }
 
-.dark-theme .custom-alert.error {
-  background: #7f1d1d;
-  color: #fecaca;
+.form-group {
+  margin-bottom: 18px;
 }
+
+.form-group label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 700;
+  color: #1e293b;
+  font-size: 1rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 15px 16px;
+  border-radius: 14px;
+  border: 1px solid #dbe2ea;
+  outline: none;
+  font-size: 1rem;
+  background: #f8fafc;
+  color: #1e293b;
+  transition: all 0.25s ease;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 150px;
+  line-height: 1.6;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #10b981;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.12);
+}
+
 /* =========================
-   DARK MODE - EDIT PROJECT
+   BUTTON
 ========================= */
 
-.dark-theme .create-project-container {
+.edit-btn {
+  width: 100%;
+  margin-top: 8px;
+  padding: 16px;
+  border: none;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #0f8a5f, #0a7c5a);
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 8px 22px rgba(15, 138, 95, 0.22);
+}
+
+.edit-btn:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(135deg, #0c6d4b, #086b4f);
+  box-shadow: 0 10px 24px rgba(15, 138, 95, 0.28);
+}
+
+/* =========================
+   DARK MODE
+========================= */
+
+.dark-theme .edit-project-page {
+  background: transparent;
+}
+
+.dark-theme .edit-project-container {
   background: #1e293b;
+  border-left: 6px solid #10b981;
+  box-shadow: none;
 }
 
-.dark-theme .create-project-container h1 {
+.dark-theme .edit-project-container h1 {
   color: #10b981;
 }
 
-.dark-theme .create-project-container p {
+.dark-theme .edit-subtitle {
   color: #cbd5e1;
 }
 
@@ -50,6 +173,80 @@
 .dark-theme .form-group input,
 .dark-theme .form-group textarea {
   background: #0f172a;
-  color: white;
+  color: #f8fafc;
   border: 1px solid #334155;
+}
+
+.dark-theme .form-group input::placeholder,
+.dark-theme .form-group textarea::placeholder {
+  color: #94a3b8;
+}
+
+.dark-theme .form-group input:focus,
+.dark-theme .form-group textarea:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.14);
+}
+
+.dark-theme .custom-alert.success {
+  background: #064e3b;
+  color: #d1fae5;
+  border: 1px solid #10b981;
+}
+
+.dark-theme .custom-alert.error {
+  background: #7f1d1d;
+  color: #fecaca;
+  border: 1px solid #ef4444;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .edit-project-page {
+    padding: 16px 12px;
+  }
+
+  .edit-project-container {
+    padding: 22px 16px;
+    border-radius: 20px;
+    margin: 10px auto;
+  }
+
+  .edit-project-container h1 {
+    font-size: 2rem;
+  }
+
+  .edit-subtitle {
+    font-size: 0.95rem;
+    margin: 10px 0 24px;
+  }
+
+  .edit-form-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .form-group label {
+    font-size: 0.95rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 13px 14px;
+    font-size: 0.95rem;
+    border-radius: 12px;
+  }
+
+  .form-group textarea {
+    min-height: 130px;
+  }
+
+  .edit-btn {
+    padding: 14px;
+    font-size: 1rem;
+    border-radius: 14px;
+  }
 }

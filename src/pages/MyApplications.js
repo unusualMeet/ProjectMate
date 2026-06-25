@@ -26,7 +26,7 @@ const MyApplications = ({ darkMode }) => {
         {
           method: "DELETE",
           headers: {
-            "auth-token": localStorage.getItem("token"),
+            "auth-token": sessionStorage.getItem("token"),
           },
         },
       );
@@ -51,7 +51,7 @@ const MyApplications = ({ darkMode }) => {
         "http://localhost:5000/api/applications/myapplications",
         {
           headers: {
-            "auth-token": localStorage.getItem("token"),
+            "auth-token": sessionStorage.getItem("token"),
           },
         },
       );

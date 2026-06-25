@@ -16,7 +16,7 @@ const ProjectApplicants = ({ darkMode }) => {
         `http://localhost:5000/api/applications/project/${id}`,
         {
           headers: {
-            "auth-token": localStorage.getItem("token"),
+            "auth-token": sessionStorage.getItem("token"),
           },
         },
       );
@@ -42,7 +42,7 @@ const ProjectApplicants = ({ darkMode }) => {
         {
           method: "PUT",
           headers: {
-            "auth-token": localStorage.getItem("token"),
+            "auth-token": sessionStorage.getItem("token"),
           },
         },
       );
@@ -65,7 +65,7 @@ const ProjectApplicants = ({ darkMode }) => {
         {
           method: "PUT",
           headers: {
-            "auth-token": localStorage.getItem("token"),
+            "auth-token": sessionStorage.getItem("token"),
           },
         },
       );

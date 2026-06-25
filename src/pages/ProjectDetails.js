@@ -20,8 +20,8 @@ const ProjectDetails = () => {
   const [canViewTeamSection, setCanViewTeamSection] = useState(false);
   const [teamLoading, setTeamLoading] = useState(true);
 
-  const currentUserId = localStorage.getItem("userId");
-  const token = localStorage.getItem("token");
+  const currentUserId = sessionStorage.getItem("userId");
+  const token = sessionStorage.getItem("token");
 
   useEffect(() => {
     fetchProject();

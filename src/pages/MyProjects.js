@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import createproject from "../assets/createproject.png";
 import createprojectdark from "../assets/createprojectdark.jpeg";
 
-const MyProjects = ({ darkMode }) => {
+const MyProjects = ({ darkMode, setNotificationCount }) => {
   const [projects, setProjects] = useState([]);
   const [expandedProjects, setExpandedProjects] = useState({});
 
@@ -18,12 +18,14 @@ const MyProjects = ({ darkMode }) => {
         "http://localhost:5000/api/projects/myprojects",
         {
           headers: {
-            "auth-token": localStorage.getItem("token"),
+            "auth-token": sessionStorage.getItem("token"),
           },
-        },
+        }
       );
+
       const data = await response.json();
       setProjects(data);
+      setNotificationCount(0); // remove navbar badge once owner opens My Projects
     } catch (error) {
       console.error(error);
     }
@@ -34,6 +36,31 @@ const MyProjects = ({ darkMode }) => {
       ...prev,
       [projectId]: !prev[projectId],
     }));
+  };
+
+  const handleApplicantsClick = async (projectId) => {
+    try {
+      await fetch(
+        `http://localhost:5000/api/projects/${projectId}/clear-new-applications`,
+        {
+          method: "PUT",
+          headers: {
+            "auth-token": sessionStorage.getItem("token"),
+          },
+        }
+      );
+
+      // instantly remove highlight from clicked project in UI
+      setProjects((prevProjects) =>
+        prevProjects.map((project) =>
+          project._id === projectId
+            ? { ...project, hasNewApplications: false }
+            : project
+        )
+      );
+    } catch (error) {
+      console.error("Failed to clear project notification:", error);
+    }
   };
 
   return (
@@ -74,12 +101,33 @@ const MyProjects = ({ darkMode }) => {
                 (isLongDescription ? "..." : "");
 
             return (
-              <div className="my-project-card" key={project._id}>
-                <div className="status-badge">● {project.status}</div>
+              <div
+                className={`my-project-card ${
+                  project.hasNewApplications
+                    ? "project-has-new-applications"
+                    : ""
+                }`}
+                key={project._id}
+              >
+                <div className="project-card-top-row">
+                  <div className="status-badge">● {project.status}</div>
+
+                  {project.hasNewApplications && (
+                    <div className="new-applications-pill">
+                      New Applications
+                    </div>
+                  )}
+                </div>
 
                 <div className="project-top">
                   <div className="project-content">
                     <h2 className="project-title">{project.title}</h2>
+
+                    {project.hasNewApplications && (
+                      <div className="new-request-text">
+                        New request received for this project
+                      </div>
+                    )}
 
                     <div className="project-description-box">
                       <p className="project-description">
@@ -112,15 +160,25 @@ const MyProjects = ({ darkMode }) => {
                 </div>
 
                 <div className="project-actions">
-                  <Link to={`/edit-project/${project._id}`} className="edit-btn">
+                  <Link
+                    to={`/edit-project/${project._id}`}
+                    className="edit-btn"
+                  >
                     Edit Project
                   </Link>
 
                   <Link
                     to={`/project/${project._id}/applicants`}
-                    className="applicants-btn"
+                    className={`applicants-btn ${
+                      project.hasNewApplications
+                        ? "applicants-btn-highlight"
+                        : ""
+                    }`}
+                    onClick={() => handleApplicantsClick(project._id)}
                   >
-                    View Applicants
+                    {project.hasNewApplications
+                      ? "View New Applicants"
+                      : "View Applicants"}
                   </Link>
                 </div>
               </div>

@@ -25,10 +25,9 @@ router.post("/create", fetchuser, async (req, res) => {
 // Get All Projects
 router.get("/all", async (req, res) => {
   try {
-    const projects = await Project.find().populate(
-      "user",
-      "name email github linkedin skills"
-    );
+    const projects = await Project.find()
+      .populate("user", "name email github linkedin skills")
+      .sort({ date: -1 });
 
     res.json(projects);
   } catch (error) {
@@ -37,14 +36,80 @@ router.get("/all", async (req, res) => {
   }
 });
 
+// =====================================================
+// Get total notification count for navbar
+// =====================================================
+router.get("/myprojects/notifications/count", fetchuser, async (req, res) => {
+  try {
+    const projects = await Project.find({ user: req.user.id });
+
+    const totalNewApplications = projects.reduce((sum, project) => {
+      return sum + (project.newApplicationsCount || 0);
+    }, 0);
+
+    res.json({
+      success: true,
+      totalNewApplications,
+    });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// =====================================================
 // Get My Projects
+// When owner visits My Projects page:
+// - navbar badge count should disappear
+// - but project highlight should remain
+// =====================================================
 router.get("/myprojects", fetchuser, async (req, res) => {
   try {
     const projects = await Project.find({
       user: req.user.id,
-    });
+    }).sort({ date: -1 });
+
+    // reset ONLY navbar badge count
+    await Project.updateMany(
+      { user: req.user.id, newApplicationsCount: { $gt: 0 } },
+      { $set: { newApplicationsCount: 0 } }
+    );
 
     res.json(projects);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// =====================================================
+// Clear project highlight after owner opens applicants page
+// =====================================================
+router.put("/:id/clear-new-applications", fetchuser, async (req, res) => {
+  try {
+    const project = await Project.findById(req.params.id);
+
+    if (!project) {
+      return res.status(404).json({
+        error: "Project not found",
+      });
+    }
+
+    if (project.user.toString() !== req.user.id) {
+      return res.status(401).json({
+        error: "Not Allowed",
+      });
+    }
+
+    project.hasNewApplications = false;
+    project.newApplicationsCount = 0;
+
+    await project.save();
+
+    res.json({
+      success: true,
+      message: "New application notification cleared",
+    });
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Server Error");
@@ -71,14 +136,12 @@ router.get("/:id/team", fetchuser, async (req, res) => {
     }
 
     const loggedInUserId = req.user.id;
-
     const isOwner = project.user._id.toString() === loggedInUserId;
 
     const isAcceptedMember = project.members.some(
       (member) => member._id.toString() === loggedInUserId
     );
 
-    // Access only for owner or accepted members
     if (!isOwner && !isAcceptedMember) {
       return res.status(403).json({
         success: false,
@@ -140,13 +203,7 @@ router.put("/update/:id", fetchuser, async (req, res) => {
       });
     }
 
-    const {
-      title,
-      description,
-      requiredSkills,
-      teamSize,
-      status,
-    } = req.body;
+    const { title, description, requiredSkills, teamSize, status } = req.body;
 
     const newProject = {};
 

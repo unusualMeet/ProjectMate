@@ -157,7 +157,7 @@ const About = () => {
         <p>
           Join ProjectMate today and start collaborating with talented students.
         </p>
-        <Link to={localStorage.getItem("token") ? "/projects" : "/signup"}>
+        <Link to={sessionStorage.getItem("token") ? "/projects" : "/signup"}>
           <button className="cta-btn">Get Started</button>
         </Link>
       </section>

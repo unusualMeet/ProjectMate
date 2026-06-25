@@ -85,9 +85,9 @@ const Signup = ({ setIsLoggedIn }) => {
 
       const data = await response.json();
       if (data.success && data.authtoken) {
-        localStorage.setItem("token", data.authtoken);
-        localStorage.setItem("userName", data.user.name);
-        localStorage.setItem("userId", data.user.id || data.user._id);
+        sessionStorage.setItem("token", data.authtoken);
+        sessionStorage.setItem("userName", data.user.name);
+        sessionStorage.setItem("userId", data.user.id || data.user._id);
 
         setIsLoggedIn(true);
         showSuccess("Account created successfully!");

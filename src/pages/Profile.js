@@ -21,7 +21,7 @@ const Profile = () => {
     skills: "",
   });
 
-  const token = localStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
 
   useEffect(() => {
     fetchProfileData();

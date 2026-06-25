@@ -1,38 +1,87 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background-color: #f4f4f9;
+  font-family: "Segoe UI", sans-serif;
+}
+/* ---------- LIGHT THEME ---------- */
+
+body.light-theme {
+  background: #f4f7fb;
+  color: #1f2937;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* ---------- DARK THEME ---------- */
+
+body.dark-theme {
+  background: #0f172a;
+  color: #f8fafc;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Smooth Transition */
+
+body,
+div,
+section,
+nav,
+button,
+input,
+textarea,
+a {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+/* ===================================
+   DARK MODE - ABOUT PAGE
+=================================== */
+
+.dark-theme .about-container {
+  background: #0f172a;
 }
 
-.App-link {
-  color: #61dafb;
+/* Section Titles */
+
+.dark-theme .section-title {
+  color: #10b981;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Stats Cards */
+
+.dark-theme .stat-card {
+  background: #1e293b;
+  border-left: 5px solid #10b981;
+  box-shadow: none;
+}
+
+.dark-theme .stat-card p {
+  color: #cbd5e1;
+}
+
+.dark-theme .stat-card h2 {
+  color: #10b981;
+}
+
+/* Feature Cards */
+
+.dark-theme .feature-card {
+  background: #1e293b;
+  border-left: 5px solid #10b981;
+  box-shadow: none;
+}
+
+.dark-theme .feature-card h3 {
+  color: #10b981;
+}
+
+.dark-theme .feature-card p {
+  color: #cbd5e1;
+}
+.dark-theme .hero-overlay {
+  background: rgba(0, 0, 0, 0.65);
 }

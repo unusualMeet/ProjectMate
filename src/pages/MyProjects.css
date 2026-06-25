@@ -1,0 +1,355 @@
+.my-projects-page {
+  padding: 40px 30px;
+}
+
+.my-projects-page h1 {
+  text-align: center;
+  color: #0a7c5a;
+  margin-bottom: 50px;
+}
+
+.my-projects-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 500px);
+  justify-content: center;
+  gap: 30px;
+}
+
+/* =========================
+   PROJECT CARD
+========================= */
+.my-project-card {
+  width: 500px;
+  background: white;
+  border-radius: 20px;
+  border-left: 6px solid #0a7c5a;
+  padding: 22px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 520px;
+}
+
+.my-project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.my-project-card h2 {
+  color: #0a7c5a;
+  margin-bottom: 15px;
+}
+
+.project-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0a7c5a;
+  margin: 12px 0 8px;
+}
+
+/* =========================
+   DESCRIPTION
+========================= */
+.project-top {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-description-box {
+  margin-bottom: 14px;
+}
+
+.project-description {
+  color: #64748b;
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 8px;
+  word-break: break-word;
+}
+
+.view-more-btn {
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  padding: 0;
+  margin-top: 4px;
+  color: #10b981;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.view-more-btn:hover {
+  color: #34d399;
+  text-decoration: underline;
+}
+
+/* =========================
+   STATUS
+========================= */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: #d1fae5;
+  color: #065f46;
+  font-weight: 600;
+  margin-bottom: 20px;
+  width: fit-content;
+}
+
+/* =========================
+   BOTTOM CONTENT
+========================= */
+.project-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.skills-container {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+.skill-tag {
+  background: #f1f5f9;
+  color: #0a7c5a;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.project-meta {
+  color: #475569;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* =========================
+   ACTION BUTTONS FIXED NEAR BOTTOM
+========================= */
+.project-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+  margin-bottom: 20px;
+}
+.edit-btn,
+.applicants-btn {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 12px;
+  padding: 14px;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.edit-btn {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.edit-btn:hover {
+  background: #e2e8f0;
+}
+
+.applicants-btn {
+  background-color: #0a7c5a;
+  color: white;
+}
+
+.applicants-btn:hover {
+  background-color: #08684c;
+  color: white;
+}
+
+/* =========================
+   EMPTY STATE
+========================= */
+.empty-projects {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.create-project-image {
+  width: 320px;
+  height: 320px;
+  object-fit: contain;
+  margin-top: -120px;
+}
+
+.oops-image {
+  width: 350px;
+  max-width: 100%;
+  opacity: 0.9;
+  margin-bottom: 0px;
+  margin-top: -20px;
+}
+
+.empty-projects h2 {
+  font-size: 38px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.empty-projects p {
+  font-size: 18px;
+  color: #64748b;
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+.create-project-btn {
+  display: inline-block;
+  background: #0a7c5a;
+  color: white;
+  text-decoration: none;
+  padding: 14px 32px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.create-project-btn:hover {
+  background: #08684c;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 1100px) {
+  .my-projects-grid {
+    grid-template-columns: 500px;
+  }
+}
+
+@media (max-width: 600px) {
+  .my-projects-page {
+    padding: 25px 14px;
+  }
+
+  .my-projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .my-project-card {
+    width: 100%;
+    min-height: auto; /* allow natural height on mobile */
+  }
+
+  .project-title {
+    font-size: 1.8rem;
+  }
+
+  .project-actions {
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+}
+
+/* =========================
+   NAV ACTIVE LINK
+========================= */
+.nav-links a {
+  text-decoration: none;
+  color: #64748b;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.nav-links a.active {
+  color: #000;
+  font-weight: 700;
+  position: relative;
+}
+
+.nav-links a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 100%;
+  height: 3px;
+  background: #0a7c5a;
+  border-radius: 10px;
+}
+
+/* =========================
+   DARK MODE - MY PROJECTS
+========================= */
+.dark-theme .my-projects-page {
+  background: #0f172a;
+}
+
+.dark-theme .my-projects-page h1 {
+  color: #10b981;
+}
+
+.dark-theme .my-project-card {
+  background: #1e293b;
+  border-left: 6px solid #10b981;
+  box-shadow: none;
+}
+
+.dark-theme .project-title {
+  color: #10b981;
+}
+
+.dark-theme .project-description,
+.dark-theme .project-meta {
+  color: #cbd5e1;
+}
+
+.dark-theme .skill-tag {
+  background: #334155;
+  color: #10b981;
+}
+
+.dark-theme .edit-btn {
+  background: #334155;
+  color: #f8fafc;
+}
+
+.dark-theme .edit-btn:hover {
+  background: #475569;
+}
+
+.dark-theme .status-badge {
+  background: #064e3b;
+  color: #10b981;
+}
+
+.dark-theme .empty-projects h2 {
+  color: #10b981;
+}
+
+.dark-theme .empty-projects p {
+  color: #cbd5e1;
+}

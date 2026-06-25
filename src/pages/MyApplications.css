@@ -1,0 +1,326 @@
+.applications-page {
+  padding: 40px;
+}
+
+.applications-page h1 {
+  text-align: center;
+  color: #0a7c5a;
+  margin-bottom: 50px;
+}
+
+.applications-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+}
+
+.application-card {
+  background: white;
+  padding: 25px;
+  border-left: 5px solid #0a7c5a;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  width: 500px;
+  max-width: 500px;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+.application-card:hover {
+  transform: translateY(-5px);
+}
+
+.application-card h2 {
+  color: #0a7c5a;
+  margin-bottom: 10px;
+}
+
+/* ---------- DESCRIPTION + VIEW MORE ---------- */
+.application-description-wrapper {
+  margin-bottom: 18px;
+}
+
+.application-description {
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 0;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.application-description.collapsed {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.application-description.expanded {
+  display: block;
+}
+
+.view-more-btn {
+  margin-top: 10px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #10b981;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.view-more-btn:hover {
+  text-decoration: underline;
+}
+
+/* ---------- STATUS ---------- */
+.status {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 8px 18px;
+  border-radius: 20px;
+  color: white;
+  font-weight: 600;
+}
+
+.pending {
+  opacity: 0.855;
+  background: rgb(223, 169, 69);
+}
+
+.accepted {
+  background: green;
+}
+
+.rejected {
+  background: crimson;
+}
+
+/* ---------- DATE ---------- */
+.application-card small {
+  display: block;
+  margin-top: 6px;
+  color: #555;
+}
+
+/* ---------- WITHDRAW BUTTON ---------- */
+.delete-application-btn {
+  display: block;
+  width: 160px;
+  margin: 15px auto 0;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ef4444, #d83636);
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.delete-application-btn:hover {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  transform: translateY(-2px);
+}
+
+/* ---------- ACCEPTED / REJECTED MESSAGE BOX ---------- */
+.application-feedback {
+  margin-top: 18px;
+  padding: 18px 20px;
+  border-radius: 18px;
+  line-height: 1.8;
+}
+
+.application-feedback h4 {
+  margin-bottom: 10px;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.application-feedback p {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.8;
+}
+
+.accepted-feedback {
+  background: #ecfdf5;
+  border: 1px solid #10b981;
+}
+
+.accepted-feedback h4 {
+  color: #047857;
+}
+
+.accepted-feedback p {
+  color: #065f46;
+}
+
+.rejected-feedback {
+  background: #fef2f2;
+  border: 1px solid #ef4444;
+}
+
+.rejected-feedback h4 {
+  color: #dc2626;
+}
+
+.rejected-feedback p {
+  color: #7f1d1d;
+}
+
+/* ---------- EMPTY STATE ---------- */
+.no-applications {
+  text-align: center;
+  font-size: 18px;
+  color: gray;
+}
+
+.empty-applications {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.oops2-image {
+  width: 320px;
+  height: 320px;
+  object-fit: contain;
+  margin-top: -30px;
+}
+
+.empty-applications h2 {
+  font-size: 42px;
+  font-weight: 700;
+  color: #0a7c5a;
+  margin-bottom: 15px;
+}
+
+.empty-applications p {
+  font-size: 20px;
+  color: #64748b;
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+.explore-projects-btn {
+  background: #0a7c5a;
+  color: white;
+  text-decoration: none;
+  padding: 14px 30px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.explore-projects-btn:hover {
+  background: #08664a;
+  color: white;
+}
+
+/* =========================
+   DARK MODE - APPLICATIONS
+========================= */
+
+.dark-theme .applications-page {
+  background: #0f172a;
+}
+
+.dark-theme .applications-page h1 {
+  color: #10b981;
+}
+
+.dark-theme .application-card {
+  background: #1e293b;
+  box-shadow: none;
+  border-left: 5px solid #10b981;
+}
+
+.dark-theme .application-card h2 {
+  color: #10b981;
+}
+
+.dark-theme .application-description,
+.dark-theme .application-card small {
+  color: #cbd5e1;
+}
+
+.dark-theme .empty-applications h2 {
+  color: #10b981;
+}
+
+.dark-theme .empty-applications p {
+  color: #cbd5e1;
+}
+
+.dark-theme .accepted-feedback {
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid #10b981;
+}
+
+.dark-theme .accepted-feedback h4 {
+  color: #6ee7b7;
+}
+
+.dark-theme .accepted-feedback p {
+  color: #d1fae5;
+}
+
+.dark-theme .rejected-feedback {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid #ef4444;
+}
+
+.dark-theme .rejected-feedback h4 {
+  color: #fca5a5;
+}
+
+.dark-theme .rejected-feedback p {
+  color: #fecaca;
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 600px) {
+  .applications-page {
+    padding: 20px 14px;
+  }
+
+  .application-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .application-card h2 {
+    padding-right: 0 !important;
+    margin-bottom: 14px;
+  }
+
+  .status {
+    position: static;
+    display: inline-block;
+    margin-bottom: 15px;
+  }
+
+  .delete-application-btn {
+    width: 140px;
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  .application-feedback h4 {
+    font-size: 1.15rem;
+  }
+
+  .application-feedback p {
+    font-size: 1rem;
+  }
+}

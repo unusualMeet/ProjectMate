@@ -1,0 +1,253 @@
+.projects-page {
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: transparent;
+}
+
+.projects-page h1 {
+  text-align: center;
+  font-size: 2.3rem;
+  margin-bottom: 35px;
+  color: #04724d;
+  font-weight: 700;
+}
+
+.projects-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.project-card {
+  background: rgb(255, 255, 255);
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  width: 600px;
+  transition: all 0.3s ease;
+  border-top: 5px solid #04724d;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(4, 114, 77, 0.15);
+}
+
+.project-card h2 {
+  color: #04724d;
+  font-size: 2.5rem;
+  margin-bottom: 18px;
+  font-weight: 700;
+}
+
+/* DESCRIPTION CONTAINER */
+.project-description-box {
+  margin-bottom: 18px;
+}
+
+/* DESCRIPTION TEXT */
+.project-card-description {
+  color: #586f7c;
+  line-height: 1.7;
+  font-size: 1.3rem;
+  margin: 0;
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* COLLAPSED = ONLY 4 LINES */
+.project-card-description.collapsed {
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 4 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  max-height: calc(1.7em * 4);
+}
+
+/* EXPANDED = FULL TEXT */
+.project-card-description.expanded {
+  display: block !important;
+  max-height: none;
+  overflow: visible;
+}
+
+/* VIEW MORE BUTTON */
+.project-card .view-more-btn {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin-top: 10px;
+  color: #10b981 !important;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-decoration: none;
+}
+
+.project-card .view-more-btn:hover {
+  color: #6ee7b7 !important;
+  text-decoration: underline;
+}
+
+/* SKILLS */
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.skills span {
+  background: #eef7f2;
+  color: #04724d;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* PROJECT INFO */
+.project-info {
+  margin-bottom: 24px;
+}
+
+.project-info p {
+  margin: 10px 0;
+  color: #2c3e50;
+  font-size: 1.3rem;
+  line-height: 1.5;
+}
+
+/* VIEW DETAILS BUTTON */
+.view-btn {
+  display: block;
+  width: 230px;
+  margin: auto auto 0;
+  padding: 14px 22px;
+  background: #0a7c5a;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 14px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.view-btn:hover {
+  background: #08684c;
+  transform: translateY(-2px);
+  color: white;
+}
+
+/* EMPTY STATE */
+.empty-projects {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.oops-image {
+  width: 320px;
+  max-width: 100%;
+  margin-bottom: 25px;
+}
+
+.empty-projects h2 {
+  color: #04724d;
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.empty-projects p {
+  color: #586f7c;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.create-project-btn {
+  display: inline-block;
+  padding: 12px 22px;
+  background: #0a7c5a;
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.create-project-btn:hover {
+  background: #08684c;
+  color: white;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .projects-page {
+    padding: 25px 14px;
+  }
+
+  .projects-page h1 {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+  }
+
+  .projects-grid {
+    gap: 20px;
+  }
+
+  .project-card {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    padding: 20px;
+    border-radius: 18px;
+  }
+
+  .project-card h2 {
+    font-size: 2rem;
+    margin-bottom: 14px;
+  }
+
+  .project-card-description {
+    font-size: 1.1rem;
+  }
+
+  .skills span {
+    font-size: 1rem;
+    padding: 8px 14px;
+  }
+
+  .project-info p {
+    font-size: 1.1rem;
+  }
+
+  .view-btn {
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 12px 18px;
+  }
+
+  .oops-image {
+    width: 250px;
+  }
+
+  .empty-projects h2 {
+    font-size: 1.6rem;
+  }
+
+  .empty-projects p {
+    font-size: 1rem;
+  }
+}

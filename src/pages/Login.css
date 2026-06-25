@@ -1,0 +1,286 @@
+/* Color Palette Variables */
+:root {
+  --primary: #04724D;        /* Core Brand Dark Green */
+  --primary-light: #EBF2F0;  /* Very Soft Light Green for Outer Container */
+  --secondary: #586F7C;      /* Slate Gray */
+  --accent: #B8DBD9;         /* Light Sage Border / Focus */
+  --bg-light: #F4F4F9;       /* Off-White Card Background */
+  --text-dark: #2C3E50;
+  --white: #FFFFFF;
+}
+
+/* Outer Container Wrapper (Visible Light Green Background) */
+.login-outer-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 70px); /* Adjusts for Navbar height */
+  background-color: var(--primary-light); /* Light Green Outer canvas */
+  padding: 40px; /* Increased outer padding around the login widget */
+  box-sizing: border-box;
+}
+
+/* Main Split-Screen Card Container */
+.login-split-card {
+  display: flex;
+  width: 100%;
+  max-width: 960px;
+  min-height: 580px;
+  background: var(--white);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(4, 114, 77, 0.08);
+}
+
+/* Left Section: Interactive Form Panel */
+.login-left-panel {
+  flex: 1;
+  padding: 50px 60px; /* High padding for a clean, premium feel */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--white);
+}
+
+/* Right Section: Core Brand Theme Panel */
+.login-right-panel {
+  flex: 1.1;
+  background-color: var(--primary); /* Deep Theme Green side panel */
+  padding: 50px 60px; /* Matching padding for internal balance */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--white);
+  position: relative;
+}
+
+/* LEFT SIDE TYPOGRAPHY & ELEMENTS */
+.brand-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 30px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--secondary);
+}
+
+.form-group input {
+  padding: 14px 16px;
+  font-size: 15px;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  outline: none;
+  background-color: transparent;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-group input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(4, 114, 77, 0.12);
+}
+
+.forgot-password-link {
+  font-size: 13px;
+  color: var(--secondary);
+  text-decoration: none;
+  align-self: flex-end;
+  margin-top: -10px;
+  transition: color 0.2s ease;
+}
+
+.forgot-password-link:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.auth-btn {
+  background-color: var(--secondary); /* Matches your gray Sign In button */
+  color: var(--white);
+  border: none;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 25px; /* Pill shape button from your chosen image */
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 10px;
+}
+
+.auth-btn:hover {
+  background-color: #455661;
+}
+
+.auth-redirect {
+  margin-top: 25px;
+  font-size: 14px;
+  color: var(--secondary);
+  text-align: center;
+}
+
+.auth-redirect a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-redirect a:hover {
+  text-decoration: underline;
+}
+
+/* RIGHT SIDE ART & CONTENT PANEL */
+.right-panel-artwork {
+  margin-bottom: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modern clean CSS placeholder for the networking/team gear graphic from image */
+.geometric-gear-art {
+  width: 140px;
+  height: 140px;
+  border: 4px dashed rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  animation: spin 25s linear infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.geometric-gear-art::before {
+  content: '🤝';
+  font-size: 40px;
+}
+
+@keyframes spin {
+  100% { transform: rotate(30deg); }
+}
+
+.right-title {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.right-subtitle {
+  font-size: 15px;
+  opacity: 0.9;
+  max-width: 320px;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+/* Slider indicators dots underneath right text */
+.slider-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+}
+
+.dot.active {
+  width: 24px;
+  background-color: var(--white);
+  border-radius: 4px;
+}
+
+/* Notification Alerts styling */
+.auth-alert {
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+.alert-success { background-color: #E6F4EA; color: #137333; border: 1px solid #CEEAD6; }
+.alert-error { background-color: #FCE8E6; color: #C5221F; border: 1px solid #FAD2CF; }
+
+/* Responsive break for tablets and phones */
+@media (max-width: 768px) {
+  .login-split-card { flex-direction: column; }
+  .login-right-panel { display: none; } /* Hide right design panel on mobile for form clarity */
+  .login-outer-wrapper { padding: 15px; }
+  .login-left-panel { padding: 40px 30px; }
+}
+/* =========================
+   DARK MODE LOGIN
+========================= */
+
+.dark-theme .login-outer-wrapper {
+  background: #0f172a;
+}
+
+.dark-theme .login-split-card {
+  background: #1e293b;
+  box-shadow: none;
+}
+
+.dark-theme .login-left-panel {
+  background: #1e293b;
+}
+
+.dark-theme .brand-title {
+  color: #10b981;
+}
+
+.dark-theme .form-group label {
+  color: #cbd5e1;
+}
+
+.dark-theme .form-group input {
+  background: #0f172a;
+  border: 1px solid #334155;
+  color: #f8fafc;
+}
+
+.dark-theme .form-group input::placeholder {
+  color: #94a3b8;
+}
+
+.dark-theme .forgot-password-link {
+  color: #cbd5e1;
+}
+
+.dark-theme .forgot-password-link:hover {
+  color: #10b981;
+}
+
+.dark-theme .auth-btn {
+  background: #10b981;
+}
+
+.dark-theme .auth-btn:hover {
+  background: #059669;
+}
+
+.dark-theme .auth-redirect {
+  color: #cbd5e1;
+}
+
+.dark-theme .auth-redirect a {
+  color: #10b981;
+}

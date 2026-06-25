@@ -1,0 +1,144 @@
+.signup-container {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-card {
+  width: 100%;
+  max-width: 450px;
+  background: white;
+  padding: 35px;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.signup-card h2 {
+  color: #04724d;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.signup-card p {
+  text-align: center;
+  color: #586f7c;
+  margin-bottom: 20px;
+}
+
+.signup-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.signup-card input {
+  padding: 12px;
+  border: 1px solid #b8dbd9;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+}
+
+.signup-card input:focus {
+  border-color: #04724d;
+}
+
+.signup-card button {
+  background: #04724d;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.signup-card button:hover {
+  background: #035c3e;
+}
+
+.signup-card button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.error {
+  background: #ffe5e5;
+  color: #d63031;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.login-link a {
+  color: #04724d;
+  text-decoration: none;
+  font-weight: 600;
+}
+.success {
+  background: #d4edda;
+  color: #155724;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: 500;
+}
+.success-banner {
+  width: 100%;
+  background: #04724d;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  font-weight: 600;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* =========================
+   DARK MODE SIGNUP
+========================= */
+
+.dark-theme .signup-container {
+  background: #0f172a;
+}
+
+.dark-theme .signup-card {
+  background: #1e293b;
+  box-shadow: none;
+}
+
+.dark-theme .signup-card h2 {
+  color: #10b981;
+}
+
+.dark-theme .signup-card p {
+  color: #cbd5e1;
+}
+
+.dark-theme .signup-card input {
+  background: #0f172a;
+  border: 1px solid #334155;
+  color: #f8fafc;
+}
+
+.dark-theme .signup-card input::placeholder {
+  color: #94a3b8;
+}
+
+.dark-theme .signup-card button {
+  background: #10b981;
+}
+
+.dark-theme .signup-card button:hover {
+  background: #059669;
+}
+
+.dark-theme .login-link,
+.dark-theme .login-link a {
+  color: #10b981;
+}

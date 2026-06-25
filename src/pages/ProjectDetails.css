@@ -1,0 +1,830 @@
+.project-details-page {
+  min-height: 80vh;
+  padding: 20px 20px 0px 20px;
+}
+
+.project-details-card {
+  max-width: 1000px;
+  width: 100%;
+  margin: 40px auto;
+  padding: 35px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  position: relative;
+  box-sizing: border-box;
+}
+
+.project-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #0f8a5f;
+  margin-bottom: 20px;
+  padding-right: 140px;
+}
+
+.project-status {
+  position: absolute;
+  top: 28px;
+  right: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 110px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  z-index: 2;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+}
+
+.section {
+  margin-top: 0px;
+  margin-bottom: 35px;
+}
+
+.section h3 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #102a43; /* softer premium navy */
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.section p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #486581; /* softer gray-blue instead of dark black */
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 360px);
+  grid-template-areas:
+    "left right"
+    "team team";
+  gap: 34px;
+  margin-top: 25px;
+  align-items: start;
+}
+.left-content,
+.right-content {
+  display: flex;
+  flex-direction: column;
+}
+.left-content {
+  grid-area: left;
+}
+
+.right-content {
+  grid-area: right;
+}
+
+.team-section {
+  grid-area: team;
+  width: 100%;
+  margin-top: 10px;
+}
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.skill-badge {
+  padding: 10px 18px;
+  background: #eaf7f1;
+  color: #0f8a5f;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+
+.info-label {
+  font-weight: 700;
+  color: #102a43;
+  margin: 0;
+}
+.info-value {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  color: inherit;
+}
+
+.info-value i {
+  flex-shrink: 0;
+  margin-top: 0;
+}
+
+.info-value-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.info-grid p {
+  margin: 0;
+  width: auto;
+  max-width: 100%;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+.apply-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  background: #0f8a5f;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.apply-btn:hover {
+  background: #0c6d4b;
+}
+
+.owner-project-message {
+  margin-top: 25px;
+  padding: 16px 22px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #d1fae5, #ecfdf5);
+  border: 2px solid #10b981;
+  color: #065f46;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.15);
+  letter-spacing: 0.2px;
+}
+
+.project-description-box {
+  margin-top: 8px;
+}
+
+.project-description-text {
+  margin: 0;
+  line-height: 1.8;
+}
+
+.view-more-btn {
+  margin-top: 10px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #10b981;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.view-more-btn:hover {
+  color: #0f8a5f;
+  text-decoration: underline;
+}
+
+/* ===================================
+   TEAM / CONTACT SECTION
+=================================== */
+
+.team-block {
+  margin-top: 22px;
+}
+
+.team-subheading {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0f8a5f;
+  margin-bottom: 14px;
+}
+.team-members-list {
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(500px, 1fr));
+  gap: 24px;
+}
+.member-card {
+  width: 80%;
+  min-height: 250px;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-left: 5px solid #10b981;
+  border-radius: 16px;
+  padding: 22px 24px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+}
+
+.owner-card {
+  border-left: 5px solid #0f8a5f;
+  width: 100%;
+  background: #f0fdf4;
+}
+
+.member-name-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  color: #0f8a5f;
+}
+
+.member-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #102a43;
+}
+
+.member-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.member-details p {
+  margin: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #486581;
+  line-height: 1.6;
+  word-break: break-word;
+}
+
+.member-details i {
+  margin-top: 4px;
+  color: #0f8a5f;
+  min-width: 16px;
+}
+
+.no-team-members {
+  padding: 16px;
+  border-radius: 14px;
+  background: #f8fbff;
+  border: 1px dashed #bcccdc;
+  color: #52606d;
+  font-weight: 600;
+}
+
+/* =========================
+   DARK MODE
+========================= */
+
+.dark-theme .project-details-page {
+  background: #0f172a;
+}
+
+.dark-theme .project-details-card {
+  background: #1e293b !important;
+  color: #f8fafc;
+  box-shadow: none;
+}
+
+.dark-theme .project-title {
+  color: #10b981;
+}
+
+.dark-theme .section h3 {
+  color: #10b981;
+}
+
+.dark-theme .section p {
+  color: #cbd5e1;
+}
+
+.dark-theme .info-label {
+  color: #f8fafc;
+}
+
+.dark-theme .skill-badge {
+  background: #334155;
+  color: #10b981;
+}
+
+.dark-theme .project-status {
+  background: #064e3b;
+  color: #10b981;
+}
+.project-status.open {
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  color: #047857;
+  border: 1px solid #6ee7b7;
+}
+
+.project-status.closed {
+  background: linear-gradient(135deg, #b91c1c, #dc2626);
+  color: #ffffff;
+  border: 1px solid #ef4444;
+}
+.dark-theme .project-status.open {
+  background: linear-gradient(135deg, #064e3b, #065f46);
+  color: #d1fae5;
+  border: 1px solid #10b981;
+}
+
+.dark-theme .project-status.closed {
+  background: linear-gradient(135deg, #7f1d1d, #991b1b);
+  color: #fecaca;
+  border: 1px solid #ef4444;
+}
+.dark-theme .owner-project-message {
+  background: linear-gradient(135deg, #064e3b, #065f46);
+  border: 2px solid #10b981;
+  color: #d1fae5;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.18);
+}
+
+/* Team dark mode */
+.dark-theme .team-subheading {
+  color: #34d399;
+}
+
+.dark-theme .member-card {
+  background: #334155;
+  border: 1px solid #475569;
+  border-left: 5px solid #10b981;
+  box-shadow: none;
+}
+
+.dark-theme .owner-card {
+  background: #243447;
+  border-left: 5px solid #34d399;
+}
+
+.dark-theme .member-name {
+  color: #f8fafc;
+}
+
+.dark-theme .member-details p {
+  color: #cbd5e1;
+}
+
+.dark-theme .member-details i,
+.dark-theme .member-name-row {
+  color: #34d399;
+}
+
+.dark-theme .no-team-members {
+  background: #334155;
+  border: 1px dashed #64748b;
+  color: #cbd5e1;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .project-details-page {
+    padding: 12px;
+  }
+  .team-members-list {
+    grid-template-columns: 1fr;
+  }
+  .project-details-card {
+    margin: 15px auto;
+    padding: 20px;
+    border-radius: 24px;
+  }
+.project-status {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  min-width: 90px;
+  height: 38px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "left"
+      "right"
+      "team";
+    gap: 0;
+  }
+
+  .left-content,
+  .right-content {
+    width: 100%;
+    margin: 0 !important;
+  }
+
+  .section {
+    background: #f8fafc;
+    padding: 18px;
+    border-radius: 16px;
+    margin-bottom: 18px;
+  }
+
+  .section h3 {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+}
+
+  .skills-container {
+    gap: 10px;
+  }
+
+  .skill-badge {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .info-label {
+    color: #0f8a5f;
+    margin-bottom: -6px;
+  }
+
+  .apply-btn {
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 14px;
+  }
+
+  .team-subheading {
+    font-size: 1.05rem;
+  }
+
+  .member-card {
+    padding: 15px;
+  }
+
+  .member-name {
+    font-size: 1rem;
+  }
+
+  .member-details p {
+    font-size: 0.95rem;
+  }
+
+  .dark-theme .section {
+    background: #334155;
+  }
+}
+/* ===================================
+   APPLICATION STATUS MESSAGE
+=================================== */
+
+.application-status-message {
+  margin-top: -17px;
+  padding: 16px 22px;
+  border-radius: 14px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.2px;
+  border: 2px solid transparent;
+}
+
+.pending-status {
+  background: linear-gradient(135deg, #fef9c3, #fef3c7);
+  border-color: #f59e0b;
+  color: #92400e;
+  box-shadow: 0 8px 20px rgba(245, 158, 11, 0.15);
+}
+
+.accepted-status {
+  background: linear-gradient(135deg, #d1fae5, #ecfdf5);
+  border-color: #10b981;
+  color: #065f46;
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.15);
+}
+
+.rejected-status {
+  background: linear-gradient(135deg, #fee2e2, #fef2f2);
+  border-color: #ef4444;
+  color: #991b1b;
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.15);
+}
+
+/* Dark mode */
+.dark-theme .pending-status {
+  background: linear-gradient(135deg, #78350f, #92400e);
+  border-color: #f59e0b;
+  color: #fde68a;
+}
+
+.dark-theme .accepted-status {
+  background: linear-gradient(135deg, #064e3b, #065f46);
+  border-color: #10b981;
+  color: #d1fae5;
+}
+
+.dark-theme .rejected-status {
+  background: linear-gradient(135deg, #7f1d1d, #991b1b);
+  border-color: #ef4444;
+  color: #fecaca;
+}
+/* ===================================
+   PROJECT OWNER SPECIAL CARD STYLING
+=================================== */
+
+/* LIGHT THEME OWNER CARD */
+.owner-card {
+  position: relative;
+  background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 45%, #f8fafc 100%);
+  border: 2px solid #10b981;
+  border-left: 6px solid #0f8a5f;
+  box-shadow:
+    0 12px 28px rgba(16, 185, 129, 0.12),
+    0 0 0 1px rgba(16, 185, 129, 0.08);
+  overflow: hidden;
+}
+
+.owner-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top right,
+    rgba(16, 185, 129, 0.12),
+    transparent 42%
+  );
+  pointer-events: none;
+}
+
+.owner-card .member-name-row {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 14px;
+}
+
+.owner-card .member-name-row i {
+  color: #10b981;
+  font-size: 1.2rem;
+}
+.owner-card .member-name {
+  color: #0b5d46;
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+.owner-card .member-details {
+  position: relative;
+  z-index: 1;
+}
+
+.owner-card .member-details p {
+  color: #244b5a;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.owner-card .member-details i {
+  color: #10b981;
+  min-width: 20px;
+}
+
+.owner-card::after {
+  content: "OWNER";
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.22);
+  color: #047857;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* DARK THEME OWNER CARD */
+.dark-theme .owner-card {
+  background: linear-gradient(135deg, #12372a 0%, #1e293b 100%);
+  border: 2px solid #10b981;
+  border-left: 6px solid #34d399;
+  box-shadow:
+    0 12px 30px rgba(16, 185, 129, 0.18),
+    0 0 0 1px rgba(16, 185, 129, 0.14);
+}
+
+.dark-theme .owner-card::before {
+  background: radial-gradient(
+    circle at top right,
+    rgba(16, 185, 129, 0.22),
+    transparent 45%
+  );
+}
+
+.dark-theme .owner-card .member-name-row i {
+  color: #34d399;
+}
+
+.dark-theme .owner-card .member-name {
+  color: #f8fafc;
+}
+
+.dark-theme .owner-card .member-details p {
+  color: #dbeafe;
+}
+
+.dark-theme .owner-card .member-details i {
+  color: #34d399;
+}
+
+.dark-theme .owner-card::after {
+  background: rgba(16, 185, 129, 0.18);
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  color: #d1fae5;
+}
+@media (max-width: 768px) {
+  .project-details-page {
+    padding: 12px;
+    overflow-x: hidden;
+  }
+
+  .project-details-card {
+    width: 100%;
+    max-width: 100%;
+    margin: 15px auto;
+    padding: 18px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .project-title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 15px;
+  word-break: break-word;
+  padding-right: 90px;
+} 
+
+  .content-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+  }
+
+  .left-content,
+  .right-content {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 !important;
+  }
+
+  .section {
+    width: 100%;
+    max-width: 100%;
+    background: #f8fafc;
+    padding: 18px;
+    border-radius: 16px;
+    margin-bottom: 18px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .section p {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .project-description-box,
+  .project-description-text {
+    width: 100%;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .skill-badge {
+    padding: 8px 14px;
+    font-size: 14px;
+    max-width: 100%;
+    word-break: break-word;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .info-label {
+    color: #0f8a5f;
+    margin-bottom: -4px;
+    font-weight: 700;
+  }
+
+  .info-value {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 0 0 10px 0;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .info-value i {
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+
+  .apply-btn {
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 14px;
+  }
+
+  .team-section {
+    width: 100%;
+  }
+
+  .team-subheading {
+    font-size: 1.05rem;
+  }
+
+  .team-members-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+  }
+
+  .member-card,
+  .owner-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .member-name-row {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .member-name {
+    font-size: 1rem;
+    word-break: break-word;
+  }
+
+  .member-details {
+    width: 100%;
+  }
+
+  .member-details p {
+    width: 100%;
+    font-size: 0.95rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .member-details span {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  .no-team-members {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .application-status-message,
+  .owner-project-message {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .dark-theme .section {
+    background: #334155;
+  }
+} 

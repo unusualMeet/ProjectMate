@@ -828,3 +828,88 @@
     background: #334155;
   }
 } 
+.apply-section{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:15px;
+}
+
+.selected-resume{
+    color:#10b981;
+    font-weight:600;
+    margin:0;
+}
+/* ====================================
+   Resume Upload
+==================================== */
+
+.resume-upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 28px 0;
+  gap: 14px;
+}
+
+.resume-input {
+  display: none;
+}
+
+.resume-upload-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 24px;
+
+  background: linear-gradient(135deg, #0a7c5a, #10b981);
+  color: white;
+
+  border-radius: 12px;
+  cursor: pointer;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  transition: all .3s ease;
+
+  box-shadow: 0 8px 18px rgba(10,124,90,.25);
+}
+
+.resume-upload-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(10,124,90,.35);
+}
+
+.resume-file-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  background: rgba(10,124,90,.12);
+
+  color: #10b981;
+
+  padding: 10px 18px;
+
+  border-radius: 10px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  max-width: 450px;
+  word-break: break-word;
+}
+
+.resume-file-name i {
+  color: #ef4444;
+  font-size: 18px;
+}
+
+/* Dark Mode */
+
+.dark-theme .resume-file-name {
+  background: rgba(16,185,129,.12);
+  color: #34d399;
+}

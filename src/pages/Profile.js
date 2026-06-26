@@ -10,7 +10,7 @@ const Profile = () => {
   });
   const [loading, setLoading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
-
+  const [createdProjects, setCreatedProjects] = useState([]);
   const [formData, setFormData] = useState({
     college: "",
     branch: "",
@@ -19,6 +19,9 @@ const Profile = () => {
     github: "",
     linkedin: "",
     skills: "",
+    interests: [],
+    availability: "Available",
+    experience: "Beginner",
   });
 
   const token = sessionStorage.getItem("token");
@@ -54,6 +57,7 @@ const Profile = () => {
       );
 
       const projectsData = await projectsResponse.json();
+      setCreatedProjects(Array.isArray(projectsData) ? projectsData : []);
       const applicationsResponse = await fetch(
         "http://localhost:5000/api/applications/myapplications",
         {
@@ -89,6 +93,9 @@ const Profile = () => {
         skills: Array.isArray(userData.skills)
           ? userData.skills.join(", ")
           : "",
+        interests: userData.interests || [],
+        availability: userData.availability || "Available",
+        experience: userData.experience || "Beginner",
       });
 
       setStats({
@@ -104,12 +111,24 @@ const Profile = () => {
   };
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
+  const handleInterestChange = (e) => {
+    const { value, checked } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      interests: checked
+        ? [...prev.interests, value]
+        : prev.interests.filter((interest) => interest !== value),
+    }));
+  };
   const handleSaveProfile = async (e) => {
     e.preventDefault();
 
@@ -129,10 +148,17 @@ const Profile = () => {
             bio: formData.bio,
             github: formData.github,
             linkedin: formData.linkedin,
+
             skills: formData.skills
               .split(",")
               .map((skill) => skill.trim())
               .filter((skill) => skill !== ""),
+
+            interests: formData.interests,
+
+            availability: formData.availability,
+
+            experience: formData.experience,
           }),
         },
       );
@@ -153,6 +179,12 @@ const Profile = () => {
           skills: Array.isArray(updatedUser.skills)
             ? updatedUser.skills.join(", ")
             : "",
+
+          interests: updatedUser.interests || [],
+
+          availability: updatedUser.availability || "Available",
+
+          experience: updatedUser.experience || "Beginner",
         });
       } else {
         console.error(updatedUser.error || "Failed to update profile");
@@ -180,7 +212,18 @@ const Profile = () => {
     "No bio added yet. Update your profile to tell others about yourself.";
   const userSkills =
     profile.skills && profile.skills.length > 0 ? profile.skills : [];
+  const userInterests =
+    profile.interests && profile.interests.length > 0 ? profile.interests : [];
 
+  const userAvailability = profile.availability || "Available";
+
+  const userExperience = profile.experience || "Beginner";
+
+  const experienceStars = {
+    Beginner: "⭐ Beginner",
+    Intermediate: "⭐⭐ Intermediate",
+    Advanced: "⭐⭐⭐ Advanced",
+  };
   return (
     <div className="profile-page">
       <div className="profile-wrapper">
@@ -261,11 +304,11 @@ const Profile = () => {
                 <div className="profile-form-group">
                   <label>Year</label>
                   <input
-                    type="text"
+                    type="string"
                     name="year"
                     value={formData.year}
                     onChange={handleChange}
-                    placeholder="Enter your year"
+                    placeholder="Enter your admission year"
                   />
                 </div>
 
@@ -301,7 +344,103 @@ const Profile = () => {
                     placeholder="Example: React, Node.js, MongoDB"
                   />
                 </div>
+                <div className="profile-form-group full-width">
+                  <label>Interests</label>
 
+                  <div className="interest-grid">
+                    {[
+                      "Web Development",
+                      "AI/ML",
+                      "App Development",
+                      "Cyber Security",
+                      "UI/UX",
+                      "Data Science",
+                      "Cloud Computing",
+                      "DevOps",
+                      "Blockchain",
+                    ].map((interest) => (
+                      <label key={interest} className="interest-option">
+                        <input
+                          type="checkbox"
+                          value={interest}
+                          checked={formData.interests.includes(interest)}
+                          onChange={handleInterestChange}
+                        />
+
+                        <span className="interest-text">{interest}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+                <div className="profile-form-group full-width">
+                  <label>Availability</label>
+
+                  <div className="radio-group">
+                    <label>
+                      <input
+                        type="radio"
+                        name="availability"
+                        value="Available"
+                        checked={formData.availability === "Available"}
+                        onChange={handleChange}
+                      />
+                      <span className="availability-badge available">
+                        Available for Projects
+                      </span>
+                    </label>
+
+                    <label>
+                      <input
+                        type="radio"
+                        name="availability"
+                        value="Busy"
+                        checked={formData.availability === "Busy"}
+                        onChange={handleChange}
+                      />
+                      <span className="availability-badge busy">
+                        Currently Busy
+                      </span>
+                    </label>
+                  </div>
+                </div>
+                <div className="profile-form-group full-width">
+                  <label>Experience Level</label>
+
+                  <div className="radio-group">
+                    <label>
+                      <input
+                        type="radio"
+                        name="experience"
+                        value="Beginner"
+                        checked={formData.experience === "Beginner"}
+                        onChange={handleChange}
+                      />
+                      Beginner
+                    </label>
+
+                    <label>
+                      <input
+                        type="radio"
+                        name="experience"
+                        value="Intermediate"
+                        checked={formData.experience === "Intermediate"}
+                        onChange={handleChange}
+                      />
+                      Intermediate
+                    </label>
+
+                    <label>
+                      <input
+                        type="radio"
+                        name="experience"
+                        value="Advanced"
+                        checked={formData.experience === "Advanced"}
+                        onChange={handleChange}
+                      />
+                      Advanced
+                    </label>
+                  </div>
+                </div>
                 <div className="profile-form-group full-width">
                   <label>Bio</label>
                   <textarea
@@ -324,26 +463,90 @@ const Profile = () => {
         )}
 
         {/* ABOUT + SKILLS */}
+        {/* ABOUT + PROFESSIONAL INFO */}
+
         <div className="profile-content-grid">
           <div className="profile-section">
-            <h3>About</h3>
+            <h3>About Me</h3>
+
             <p>{userBio}</p>
           </div>
 
           <div className="profile-section">
-            <h3>Skills</h3>
-            <div className="skills-container">
-              {userSkills.length > 0 ? (
-                userSkills.map((skill, index) => (
-                  <span key={index}>{skill}</span>
-                ))
-              ) : (
-                <p className="empty-profile-text">No skills added yet.</p>
-              )}
+            <h3>Professional Information</h3>
+
+            <div className="professional-grid">
+              {/* Skills */}
+
+              <div className="professional-box">
+                <h4>Skills</h4>
+
+                <div className="skills-container">
+                  {userSkills.length > 0 ? (
+                    userSkills.map((skill, index) => (
+                      <span key={index}>{skill}</span>
+                    ))
+                  ) : (
+                    <p>No skills added.</p>
+                  )}
+                </div>
+              </div>
+
+              {/* Interests */}
+
+              <div className="professional-box">
+                <h4>Interests</h4>
+
+                <div className="skills-container">
+                  {userInterests.length > 0 ? (
+                    userInterests.map((interest, index) => (
+                      <span key={index}>{interest}</span>
+                    ))
+                  ) : (
+                    <p>No interests added.</p>
+                  )}
+                </div>
+              </div>
+
+              {/* Availability */}
+
+              <div className="professional-box">
+                <h4>Availability</h4>
+
+                <div
+                  className={`availability-badge ${
+                    userAvailability === "Available" ? "available" : "busy"
+                  }`}
+                >
+                  {userAvailability === "Available"
+                    ? "Available for Projects"
+                    : "Currently Busy"}
+                </div>
+              </div>
+
+              {/* Experience */}
+
+              <div className="professional-box">
+                <h4>Experience</h4>
+
+                <p>{experienceStars[userExperience]}</p>
+              </div>
             </div>
           </div>
         </div>
+        <div className="profile-section">
+          <h3>Projects Created</h3>
 
+          {createdProjects.length > 0 ? (
+            <ul className="projects-created-list">
+              {createdProjects.map((project) => (
+                <li key={project._id}>{project.title}</li>
+              ))}
+            </ul>
+          ) : (
+            <p className="empty-profile-text">No projects created yet.</p>
+          )}
+        </div>
         {/* STATS */}
         <div className="profile-stats">
           <div className="profile-stat">

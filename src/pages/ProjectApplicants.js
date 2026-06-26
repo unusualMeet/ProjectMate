@@ -125,7 +125,17 @@ const ProjectApplicants = ({ darkMode }) => {
 
               <p className="applicant-message-label">Message:</p>
               <p className="applicant-message">{app.message}</p>
-
+              {/* Resume */}
+              {app.resume && (
+                <a
+                  href={`http://localhost:5000/uploads/resumes/${app.resume}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="resume-btn"
+                >
+                  📄 View Resume
+                </a>
+              )}  
               <span className={`status-badge ${app.status.toLowerCase()}`}>
                 {app.status}
               </span>

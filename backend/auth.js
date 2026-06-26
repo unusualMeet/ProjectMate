@@ -121,7 +121,18 @@ router.post("/getuser", fetchuser, async (req, res) => {
 // UPDATE PROFILE
 router.put("/updateprofile", fetchuser, async (req, res) => {
   try {
-    const { college, branch, year, bio, github, linkedin, skills } = req.body;
+    const {
+      college,
+      branch,
+      year,
+      bio,
+      github,
+      linkedin,
+      skills,
+      interests,
+      availability,
+      experience,
+    } = req.body;
     const newProfile = {};
     if (college) newProfile.college = college;
     if (branch) newProfile.branch = branch;
@@ -130,6 +141,9 @@ router.put("/updateprofile", fetchuser, async (req, res) => {
     if (github) newProfile.github = github;
     if (linkedin) newProfile.linkedin = linkedin;
     if (skills) newProfile.skills = skills;
+    if (interests) newProfile.interests = interests;
+    if (availability) newProfile.availability = availability;
+    if (experience) newProfile.experience = experience;
     const user = await User.findByIdAndUpdate(
       req.user.id,
       { $set: newProfile },

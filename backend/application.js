@@ -23,5 +23,9 @@ const ApplicationSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  resume: {
+    type: String,
+    required: true
+}
 });
 module.exports = mongoose.model("application", ApplicationSchema);

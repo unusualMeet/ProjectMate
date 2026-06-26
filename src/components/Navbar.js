@@ -49,9 +49,7 @@ const Navbar = ({
         <Link to="/myprojects" className="nav-link nav-link-with-badge">
           My Projects
           {token && notificationCount > 0 && (
-            <span className="nav-notification-badge">
-              {notificationCount}
-            </span>
+            <span className="nav-notification-badge">{notificationCount}</span>
           )}
         </Link>
 
@@ -156,10 +154,9 @@ const Navbar = ({
           className="mobile-link mobile-link-with-badge"
           onClick={() => setMenuOpen(false)}
         >
-          <div className="mobile-link-left">
-            <i className="fa-solid fa-briefcase"></i>
-            My Projects
-          </div>
+          <i className="fa-solid fa-briefcase"></i>
+
+          <span>My Projects</span>
 
           {token && notificationCount > 0 && (
             <span className="mobile-nav-notification-badge">

@@ -391,8 +391,10 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 82%;
-    max-width: 320px;
+
+    width: 85%;
+    max-width: 360px;
+
     height: 100vh;
     background: white;
     box-shadow: 10px 0 40px rgba(0, 0, 0, 0.15);
@@ -438,13 +440,15 @@
   .mobile-link {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 14px;
+    gap: 16px;
+
+    white-space: nowrap;
+
     text-decoration: none;
     color: #334155;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 600;
-    padding: 14px 16px;
+    padding: 15px 18px;
     border-radius: 12px;
     transition: all 0.25s ease;
   }
@@ -460,19 +464,24 @@
 
   .mobile-link i {
     width: 22px;
+    min-width: 22px;
+
     text-align: center;
+
+    font-size: 18px;
   }
 
   .mobile-link-left {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 16px;
   }
 
   .mobile-link-with-badge {
-    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    gap: 16px;
   }
-
   .mobile-nav-notification-badge {
     min-width: 24px;
     height: 24px;
@@ -483,6 +492,8 @@
     font-size: 12px;
     font-weight: 700;
     display: flex;
+    margin-left: auto;
+
     justify-content: center;
     align-items: center;
     box-shadow: 0 6px 14px rgba(239, 68, 68, 0.35);
@@ -493,7 +504,19 @@
     background: rgba(148, 163, 184, 0.2);
     margin: 15px 0;
   }
+  .mobile-link span {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
 
+  .mobile-link-with-badge {
+    display: flex;
+    align-items: center;
+  }
+
+  .mobile-nav-notification-badge {
+    margin-left: auto;
+  }
   .mobile-theme {
     display: flex;
     justify-content: space-between;

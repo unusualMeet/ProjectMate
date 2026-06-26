@@ -12,7 +12,7 @@ const ProjectDetails = () => {
   const [applicationStatus, setApplicationStatus] = useState("");
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState("");
-
+  const [resume, setResume] = useState(null);
   const [showFullDescription, setShowFullDescription] = useState(false);
 
   // Team / Contact section states
@@ -122,18 +122,30 @@ const ProjectDetails = () => {
   // Apply to project
   // =========================
   const applyToProject = async () => {
+    if (!resume) {
+      setMessage("Please upload your resume.");
+      setMessageType("error");
+      return;
+    }
+
     try {
+      const formData = new FormData();
+
+      formData.append("message", "I would like to join this project.");
+
+      formData.append("resume", resume);
+      console.log(formData.get("message"));
+      console.log(formData.get("resume"));
       const response = await fetch(
         `http://localhost:5000/api/applications/apply/${id}`,
         {
           method: "POST",
+
           headers: {
-            "Content-Type": "application/json",
             "auth-token": token,
           },
-          body: JSON.stringify({
-            message: "I would like to join this project.",
-          }),
+
+          body: formData,
         },
       );
 
@@ -142,18 +154,22 @@ const ProjectDetails = () => {
       if (response.ok) {
         setMessage("Applied Successfully");
         setMessageType("success");
+
         setApplied(true);
+
         setApplicationStatus("Pending");
 
-        // refetch project after applying in case backend status changes later
         fetchProject();
       } else {
-        setMessage(data.error || "Failed to apply");
+        setMessage(data.error);
+
         setMessageType("error");
       }
     } catch (error) {
       console.error(error);
+
       setMessage("Something went wrong");
+
       setMessageType("error");
     }
   };
@@ -385,9 +401,44 @@ const ProjectDetails = () => {
             This project is full , So you can not apply for this project .
           </div>
         ) : (
-          <button className="apply-btn" onClick={applyToProject}>
-            Apply To Project
-          </button>
+          <div className="apply-section">
+            <div className="resume-upload-container">
+              <label htmlFor="resume-upload" className="resume-upload-btn">
+                <i className="fa-solid fa-file-arrow-up"></i>
+                {resume ? "Change Resume" : "Upload Resume (PDF)"}
+              </label>
+
+              <input
+                id="resume-upload"
+                type="file"
+                accept=".pdf"
+                className="resume-input"
+                onChange={(e) => setResume(e.target.files[0])}
+              />
+
+              <div className="resume-file-name">
+                {resume ? (
+                  <>
+                    <i className="fa-solid fa-file-pdf"></i>
+                    <span>{resume.name}</span>
+                  </>
+                ) : (
+                  <>
+                    <i className="fa-regular fa-file"></i>
+                    <span>No file selected</span>
+                  </>
+                )}
+              </div>
+            </div>
+
+            {resume && (
+              <p className="selected-resume">Selected :{resume.name}</p>
+            )}
+
+            <button className="apply-btn" onClick={applyToProject}>
+              Apply To Project
+            </button>
+          </div>
         )}
       </div>
     </div>
